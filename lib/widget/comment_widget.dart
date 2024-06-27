@@ -77,7 +77,7 @@ class _CommentsWidgetState extends State<CommentsWidget> {
                     );
                   } else {
                     return const Center(
-                      child: Text('else'),
+                      child: Text(''),
                     );
                   }
                 },

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
-  // final  data = FireStore().getUserbydata(id: Auth().userUID());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,7 +33,7 @@ class DrawerWidget extends StatelessWidget {
                           return Flexible(
                             child: CircleAvatar(
                               radius: 50,
-                              // backgroundColor: Colors.white,
+                              backgroundColor: Colors.white,
                               backgroundImage:
                                   NetworkImage(snapshot.data!.image),
                             ),
@@ -42,11 +41,7 @@ class DrawerWidget extends StatelessWidget {
                         } else if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Flexible(
-                            child: CircleAvatar(
-                              radius: 110,
-                              backgroundColor: Colors.transparent,
-                              child: CircularProgressIndicator(),
-                            ),
+                            child: CircularProgressIndicator(),
                           );
                         } else {
                           return const Flexible(
@@ -83,7 +78,6 @@ class DrawerWidget extends StatelessWidget {
                           return const Flexible(
                             child: Text(
                               'ERROR',
-                              // 'name',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 30,
@@ -146,7 +140,7 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) {
-                    return  AllWorker();
+                    return const AllWorker();
                   },
                 ));
               },

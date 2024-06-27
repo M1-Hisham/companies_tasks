@@ -14,7 +14,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
   var email = TextEditingController();
   var password = TextEditingController();
-  static bool _isLoding = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -154,54 +153,41 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: size.height * 0.055,
                 ),
-                _isLoding
-                    ? InkWell(
-                        onTap: () {
-                          if (formkey.currentState!.validate()) {
-                            FocusScope.of(context).requestFocus(FocusNode());
-                            setState(() {
-                              _isLoding = !_isLoding;
-                            });
-                            Auth().userLogin(
-                              email: email.text,
-                              password: password.text,
-                              context: context,
-                            );
-                          }
-                        },
-                        child: Container(
-                          height: size.height * 0.07,
-                          width: double.infinity,
-                          color: Colors.black,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'LOGIN',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 25),
-                                ),
-                                SizedBox(
-                                  width: size.width * 0.03,
-                                ),
-                                const Icon(
-                                  Icons.login,
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
+                InkWell(
+                  onTap: () {
+                    if (formkey.currentState!.validate()) {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      Auth().userLogin(
+                        email: email.text,
+                        password: password.text,
+                        context: context,
+                      );
+                    }
+                  },
+                  child: Container(
+                    height: size.height * 0.07,
+                    width: double.infinity,
+                    color: Colors.black,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'LOGIN',
+                            style: TextStyle(color: Colors.white, fontSize: 25),
                           ),
-                        ),
-                      )
-                    : InkWell(
-                        onTap: () {
-                          setState(() {
-                            _isLoding = !_isLoding;
-                          });
-                        },
-                        child: const CircularProgressIndicator(),
+                          SizedBox(
+                            width: size.width * 0.03,
+                          ),
+                          const Icon(
+                            Icons.login,
+                            color: Colors.white,
+                          )
+                        ],
                       ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

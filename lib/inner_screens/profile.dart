@@ -190,25 +190,88 @@ class _ProfileScreenState extends State<ProfileScreen> {
             drawer: const DrawerWidget(),
             appBar: AppBar(
               actions: [
-                PopupMenuButton<String>(
-                  onSelected: (String result) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => EditScreen(
-                        name: data!.name,
-                        email: data.email,
-                        phone: data.phone,
-                        image: data.image,
-                      ),
-                    ));
-                  },
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: 'Edit',
-                      child: Text('Edit'),
-                    ),
-                  ],
-                ),
+                _authUser == widget.uid
+                    ? PopupMenuButton<String>(
+                        onSelected: (String result) {
+                          if (result == 'Edit') {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => EditScreen(
+                                name: data!.name,
+                                email: data.email,
+                                phone: data.phone,
+                                image: data.image,
+                              ),
+                            ));
+                          }
+                          if (result == 'Delete') {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Row(
+                                  children: [
+                                    Icon(Icons.delete),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Delete Account',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                content: const Text(
+                                  'Are you sure to delete the account?',
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.canPop(context)
+                                          ? Navigator.pop(context)
+                                          : null;
+                                    },
+                                    child: const Text(
+                                      'Cancel',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Auth().deleteUser(context: context);
+                                    },
+                                    child: const Text(
+                                      'Ok',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuEntry<String>>[
+                          const PopupMenuItem<String>(
+                            value: 'Edit',
+                            child: Text('Edit'),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'Delete',
+                            child: Text(
+                              'Delete',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      )
+                    : const SizedBox()
               ],
             ),
             body: SingleChildScrollView(
@@ -354,7 +417,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _authUser == widget.uid
                             ? InkWell(
                                 onTap: () {
-                                  // print('${widget.uid}');
                                   Auth().userLogout(context: context);
                                 },
                                 child: Container(
@@ -444,7 +506,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _whatsApp(number) async {
-    await launchUrlString('https://wa.me/$number?text=Hello,\ni am APP',
+    await launchUrlString(
+        'https://wa.me/$number?text=Hello,\ni\'m coming from App',
         mode: LaunchMode.externalApplication);
   }
 

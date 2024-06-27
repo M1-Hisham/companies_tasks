@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:companies_tasks/screens/auth/login_screen.dart';
 import 'package:companies_tasks/screens/tasks.dart';
 import 'package:companies_tasks/services/firestore_services.dart';
@@ -272,17 +273,54 @@ class Auth {
   }
 
 //! Delete
-  // Future<void> deleteUser({required context}) async {
-  //   // await StorageServices().deletUserStorage();
-  //   // await FirestoreServices().deletUserDocs();
-  //   await myUser?.delete();
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(
-  //       builder: (context) {
-  //         return const LoginScreen();
-  //       },
-  //     ),
-  //   );
-  //   // userLogout(context: context);
-  // }
+  Future<void> deleteUser({required context}) async {
+    var uid = Auth().userUID();
+    User? user = FirebaseAuth.instance.currentUser;
+    var ref = FirebaseStorage.instance.ref();
+    var imageRef = ref.child('users').child('$uid.jpg');
+    try {
+      if (user != null) {
+        await user.delete();
+      }
+
+      await imageRef.delete();
+
+      QuerySnapshot userTasks = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('uploadedBy', isEqualTo: uid)
+          .get();
+
+      // Delete all user Tasks
+      for (var doc in userTasks.docs) {
+        await FirebaseFirestore.instance
+            .collection('tasks')
+            .doc(doc.id)
+            .delete();
+      }
+      QuerySnapshot userComment = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('uid', isEqualTo: uid)
+          .get();
+
+      // Delete all user comment
+      for (var doc in userComment.docs) {
+        await FirebaseFirestore.instance
+            .collection('tasks')
+            .doc(doc.id)
+            .delete();
+      }
+      await FirebaseFirestore.instance.collection('users').doc(uid).delete();
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) {
+            return const LoginScreen();
+          },
+        ),
+      );
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error deleting user: $e');
+    }
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:companies_tasks/screens/auth/login_screen.dart';
 import 'package:companies_tasks/services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -310,11 +311,11 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: size.height * 0.055,
                   ),
-                  // _isLoding
-                  //     ?
+
                   InkWell(
                     onTap: () async {
-                      if (formkey.currentState!.validate()) {
+                      if (formkey.currentState!.validate() &&
+                          pickedFile != null) {
                         Auth().createUserByEmail(
                           image: File(pickedFile!.path),
                           email: email.text,
@@ -324,6 +325,19 @@ class _SignUpState extends State<SignUp> {
                           phone: phoneNumber.text,
                           jobCategory: categorycontroller.text,
                         );
+                      }
+                      if (pickedFile == null) {
+                        return AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.warning,
+                          title: 'IMAGE',
+                          desc: 'Please upload the picture',
+                          descTextStyle: const TextStyle(
+                              color: Colors.black, fontSize: 20),
+                          btnCancelColor: Colors.orange[400],
+                          btnCancelText: 'OK',
+                          btnCancelOnPress: () {},
+                        ).show();
                       }
                     },
                     child: Container(
@@ -352,7 +366,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   )
-                  // : const CircularProgressIndicator(),
                 ],
               ),
             ),
