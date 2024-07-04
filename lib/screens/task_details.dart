@@ -5,6 +5,7 @@ import 'package:companies_tasks/services/firestore_services.dart';
 import 'package:companies_tasks/services/models.dart';
 import 'package:companies_tasks/widget/comment_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class TaskDetails extends StatefulWidget {
   final dynamic taskDetaIls;
@@ -88,7 +89,7 @@ class _TaskDetailsState extends State<TaskDetails> {
                                 } else if (snapshot.hasData) {
                                   UserData? data = snapshot.data;
                                   return CircleAvatar(
-                                    radius: 30,
+                                    radius: 28,
                                     backgroundColor: Colors.black,
                                     backgroundImage: NetworkImage(data!.image),
                                   );
@@ -109,11 +110,15 @@ class _TaskDetailsState extends State<TaskDetails> {
                                 } else if (snapshot.hasData) {
                                   UserData? data = snapshot.data;
                                   return Expanded(
-                                    child: Text(
-                                      '${data!.name}\n${data.jobCategory}',
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.blue,
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        '${data!.name}\n${data.jobCategory}',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.blue,
+                                        ),
                                       ),
                                     ),
                                   );
@@ -142,11 +147,15 @@ class _TaskDetailsState extends State<TaskDetails> {
                             ),
                             const Spacer(),
                             Expanded(
-                              child: Text(
-                                '${date.year}-${date.month}-${date.day}',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.blue,
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  '${date.year}-${date.month}-${date.day}',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.blue,
+                                  ),
                                 ),
                               ),
                             ),
@@ -167,11 +176,15 @@ class _TaskDetailsState extends State<TaskDetails> {
                             ),
                             const Spacer(),
                             Expanded(
-                              child: Text(
-                                widget.taskDetaIls['deadline'],
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.red,
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  widget.taskDetaIls['deadline'],
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.red,
+                                  ),
                                 ),
                               ),
                             ),
@@ -501,7 +514,6 @@ class _TaskDetailsState extends State<TaskDetails> {
                           height: 20,
                         ),
                         CommentsWidget(
-                          // comment: widget.taskDetaIls['comments'],
                           taskUid: widget.taskDetaIls['taskuid'],
                         ),
                         const SizedBox(

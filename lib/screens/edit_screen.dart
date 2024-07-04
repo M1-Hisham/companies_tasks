@@ -208,9 +208,12 @@ class _EditScreenState extends State<EditScreen> {
                   }
                 },
                 child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(90),
+                  ),
                   height: 50,
                   width: 150,
-                  color: Colors.black,
                   child: const Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -232,6 +235,7 @@ class _EditScreenState extends State<EditScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ),

@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Tasks',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
             color: Colors.black, iconTheme: IconThemeData(color: Colors.white)),

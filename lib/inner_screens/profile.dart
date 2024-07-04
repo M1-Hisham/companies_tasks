@@ -2,7 +2,9 @@ import 'package:companies_tasks/screens/edit_screen.dart';
 import 'package:companies_tasks/services/auth_services.dart';
 import 'package:companies_tasks/services/firestore_services.dart';
 import 'package:companies_tasks/services/models.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../widget/drawer_widget.dart';
@@ -329,7 +331,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(
                             children: [
                               const Text(
-                                'Email',
+                                'Email:',
                                 style: TextStyle(
                                     fontSize: 23,
                                     color: Colors.black,
@@ -339,11 +341,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 width: 15,
                               ),
                               Expanded(
-                                child: Text(
-                                  data.email,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.blueAccent,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    data.email,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.blueAccent,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -355,9 +361,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(
                             children: [
                               const Text(
-                                'Phone number',
+                                'Phone number:',
                                 style: TextStyle(
-                                    fontSize: 23,
+                                    fontSize: 22,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -365,11 +371,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 width: 15,
                               ),
                               Expanded(
-                                child: Text(
-                                  data.phone,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.blueAccent,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    data.phone,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.blueAccent,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -420,30 +430,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Auth().userLogout(context: context);
                                 },
                                 child: Container(
-                                  height: size.height * 0.05,
-                                  width: size.height * 0.2,
+                                  height: size.height * 0.055,
+                                  width: size.height * 0.23,
                                   decoration: BoxDecoration(
                                       color: Colors.black,
                                       borderRadius: BorderRadius.circular(24)),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Text(
-                                          'LOGOUT',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 25),
-                                        ),
-                                        SizedBox(
-                                          width: size.width * 0.02,
-                                        ),
-                                        const Icon(
-                                          Icons.logout,
-                                          color: Colors.white,
-                                        )
-                                      ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              'LOGOUT',
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 25),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: size.width * 0.02,
+                                          ),
+                                          const Icon(
+                                            Icons.logout,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
