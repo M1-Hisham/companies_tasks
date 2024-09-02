@@ -1,7 +1,7 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:companies_tasks/screens/auth/login_screen.dart';
-import 'package:companies_tasks/services/auth_services.dart';
+import 'package:companies_tasks/models/services/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'login_screen.dart';
 
 class ForgetPassword extends StatelessWidget {
   ForgetPassword({super.key});

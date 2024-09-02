@@ -1,5 +1,5 @@
-import 'package:companies_tasks/screens/auth/login_screen.dart';
-import 'package:companies_tasks/screens/tasks.dart';
+import 'package:companies_tasks/view/screens/auth/login_screen.dart';
+import 'package:companies_tasks/view/screens/tasks.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

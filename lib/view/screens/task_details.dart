@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:companies_tasks/screens/tasks.dart';
-import 'package:companies_tasks/services/auth_services.dart';
-import 'package:companies_tasks/services/firestore_services.dart';
-import 'package:companies_tasks/services/models.dart';
-import 'package:companies_tasks/widget/comment_widget.dart';
+import 'package:companies_tasks/models/services/auth_services.dart';
+import 'package:companies_tasks/models/services/firestore_services.dart';
+import 'package:companies_tasks/models/services/models.dart';
+import 'package:companies_tasks/view/widget/comment_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import 'tasks.dart';
 
 class TaskDetails extends StatefulWidget {
   final dynamic taskDetaIls;

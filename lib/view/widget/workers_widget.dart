@@ -1,5 +1,5 @@
-import 'package:companies_tasks/inner_screens/profile.dart';
-import 'package:companies_tasks/services/models.dart';
+import 'package:companies_tasks/models/services/models.dart';
+import 'package:companies_tasks/view/inner_screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

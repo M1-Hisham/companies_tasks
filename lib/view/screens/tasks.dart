@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:companies_tasks/widget/drawer_widget.dart';
-import 'package:companies_tasks/widget/tasks_widget.dart';
+import 'package:companies_tasks/view/widget/drawer_widget.dart';
+import 'package:companies_tasks/view/widget/tasks_widget.dart';
 import 'package:flutter/material.dart';
 
 class TasksHome extends StatefulWidget {
@@ -150,47 +150,3 @@ class _TasksHomeState extends State<TasksHome> {
     );
   }
 }
-
-
-// FutureBuilder(
-//         future: FireStore().getTasks(category: taskCategory),
-//         // initialData: InitialData,
-//         builder: (BuildContext context, AsyncSnapshot snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return const Center(
-//               child: CircularProgressIndicator(),
-//             );
-//           } else if (snapshot.hasData) {
-//             if (snapshot.data.isEmpty) {
-//               return const Scaffold(
-//                 body: Center(
-//                   child: Text('No Tasks has been uploded'),
-//                 ),
-//               );
-//             } else {
-//               return Scaffold(
-//                 body: RefreshIndicator(
-//                   onRefresh: () async {
-//                     setState(() {});
-//                   },
-//                   child: ListView.builder(
-//                     padding: const EdgeInsets.all(8),
-//                     itemCount: snapshot.data!.length,
-//                     itemBuilder: (context, index) {
-//                       return TasksWidget(
-//                         uid: snapshot.data![index],
-//                       );
-//                     },
-//                   ),
-//                 ),
-//               );
-//             }
-//           }
-          
-//           else {
-//             return const Center(
-//               child: Text('ERROR'),
-//             );
-//           }
-//         },
-//       ),

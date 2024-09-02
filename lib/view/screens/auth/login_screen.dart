@@ -1,6 +1,6 @@
-import 'package:companies_tasks/screens/auth/forget_password.dart';
+import 'package:companies_tasks/models/services/auth_services.dart';
 import 'package:flutter/material.dart';
-import '../../services/auth_services.dart';
+import 'forget_password.dart';
 import 'signup.dart';
 
 class LoginScreen extends StatefulWidget {

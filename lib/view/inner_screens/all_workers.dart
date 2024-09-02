@@ -1,7 +1,8 @@
-import 'package:companies_tasks/services/firestore_services.dart';
+
+import 'package:companies_tasks/models/services/firestore_services.dart';
+import 'package:companies_tasks/view/widget/drawer_widget.dart';
+import 'package:companies_tasks/view/widget/workers_widget.dart';
 import 'package:flutter/material.dart';
-import '../widget/drawer_widget.dart';
-import '../widget/workers_widget.dart';
 
 class AllWorker extends StatefulWidget {
   const AllWorker({super.key});
@@ -138,20 +139,10 @@ class _AllWorkerState extends State<AllWorker> {
                     // final myUser = FirebaseAuth.instance.currentUser;
                     return WorkersWidget(
                       uid: snapshot.data![index],
-                      // uid: snapshot.data![index],
-                      // name: snapshot.data!.docs[index]['name'],
-                      // email: snapshot.data!.docs[index]['email'],
-                      // job: snapshot.data!.docs[index]['jobCategory'],
-                      // image: snapshot.data!.docs[index]['image'],
-                      // phone: snapshot.data!.docs[index]['phone'],
                     );
                   },
                 );
-                // const Center(child: Text('hasData'));
-                // }
-                // return const Center(
-                //   child: Text('NOHasData'),
-                // );
+              
               } else {
                 return const Center(
                   child: Text('ERROR'),

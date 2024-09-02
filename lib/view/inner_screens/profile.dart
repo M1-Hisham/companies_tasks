@@ -1,13 +1,11 @@
-import 'package:companies_tasks/screens/edit_screen.dart';
-import 'package:companies_tasks/services/auth_services.dart';
-import 'package:companies_tasks/services/firestore_services.dart';
-import 'package:companies_tasks/services/models.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:companies_tasks/models/services/auth_services.dart';
+import 'package:companies_tasks/models/services/firestore_services.dart';
+import 'package:companies_tasks/models/services/models.dart';
+import 'package:companies_tasks/view/screens/edit_screen.dart';
+import 'package:companies_tasks/view/widget/drawer_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import '../widget/drawer_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:companies_tasks/services/firestore_services.dart';
+import 'package:companies_tasks/models/services/firestore_services.dart';
 import 'package:flutter/material.dart';
 
 class CommentsWidget extends StatefulWidget {

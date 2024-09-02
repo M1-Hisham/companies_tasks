@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:companies_tasks/services/models.dart';
+import 'package:companies_tasks/models/services/models.dart';
 import 'auth_services.dart';
 
 class FireStore {
