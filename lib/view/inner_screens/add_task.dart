@@ -1,6 +1,6 @@
-import 'package:companies_tasks/models/services/auth_services.dart';
-import 'package:companies_tasks/models/services/firestore_services.dart';
-import 'package:companies_tasks/models/services/models.dart';
+import 'package:companies_tasks/services/auth_services.dart';
+import 'package:companies_tasks/services/firestore_services.dart';
+import 'package:companies_tasks/models/models.dart';
 import 'package:companies_tasks/view/screens/tasks.dart';
 import 'package:companies_tasks/view/widget/dialog_widget.dart';
 import 'package:companies_tasks/view/widget/drawer_widget.dart';

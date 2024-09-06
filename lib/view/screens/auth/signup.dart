@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:companies_tasks/models/services/auth_services.dart';
+import 'package:companies_tasks/services/auth_services.dart';
 import 'package:companies_tasks/view/widget/dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';

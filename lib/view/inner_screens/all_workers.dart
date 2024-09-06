@@ -1,5 +1,5 @@
 
-import 'package:companies_tasks/models/services/firestore_services.dart';
+import 'package:companies_tasks/services/firestore_services.dart';
 import 'package:companies_tasks/view/widget/drawer_widget.dart';
 import 'package:companies_tasks/view/widget/workers_widget.dart';
 import 'package:flutter/material.dart';

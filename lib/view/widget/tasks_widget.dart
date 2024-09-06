@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:companies_tasks/models/services/auth_services.dart';
+import 'package:companies_tasks/services/auth_services.dart';
 import 'package:companies_tasks/view/screens/task_details.dart';
 import 'package:flutter/material.dart';
 

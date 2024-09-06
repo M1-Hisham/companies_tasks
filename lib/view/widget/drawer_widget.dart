@@ -1,5 +1,5 @@
-import 'package:companies_tasks/models/services/auth_services.dart';
-import 'package:companies_tasks/models/services/firestore_services.dart';
+import 'package:companies_tasks/services/auth_services.dart';
+import 'package:companies_tasks/services/firestore_services.dart';
 import 'package:companies_tasks/view/inner_screens/add_task.dart';
 import 'package:companies_tasks/view/inner_screens/all_workers.dart';
 import 'package:companies_tasks/view/inner_screens/profile.dart';

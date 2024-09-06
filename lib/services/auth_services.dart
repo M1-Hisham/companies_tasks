@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:companies_tasks/models/services/firestore_services.dart';
-import 'package:companies_tasks/models/services/models.dart';
+import 'package:companies_tasks/services/firestore_services.dart';
+import 'package:companies_tasks/models/models.dart';
 import 'package:companies_tasks/view/screens/auth/login_screen.dart';
 import 'package:companies_tasks/view/screens/tasks.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +11,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Auth {
-  //! create email & password
+  //* create email & password
   String userUID() {
     final auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
@@ -133,7 +133,7 @@ class Auth {
     }
   }
 
-//! LOGIN
+//* LOGIN
   void userLogin({
     required String email,
     required String password,
@@ -214,7 +214,7 @@ class Auth {
     }
   }
 
-//! LOGOUT
+//* LOGOUT
   void userLogout({required context}) async {
     // signOut with google
     // GoogleSignIn googleSignIn = GoogleSignIn();
@@ -231,7 +231,7 @@ class Auth {
       },
     ));
   }
-
+//* Register
   Future<bool> isRegisteredEmail(
       {required String email, required context}) async {
     try {
@@ -254,7 +254,7 @@ class Auth {
     }
     return false;
   }
-
+//* Reset Password
   Future<void> resetPassword({required String email, required context}) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
@@ -272,7 +272,7 @@ class Auth {
     }
   }
 
-//! Delete
+//* Delete
   Future<void> deleteUser({required context}) async {
     var uid = Auth().userUID();
     User? user = FirebaseAuth.instance.currentUser;

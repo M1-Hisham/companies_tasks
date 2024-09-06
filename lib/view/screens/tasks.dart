@@ -1,27 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:companies_tasks/view/widget/drawer_widget.dart';
 import 'package:companies_tasks/view/widget/tasks_widget.dart';
+import 'package:companies_tasks/view_models/tasks_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class TasksHome extends StatefulWidget {
+class TasksHome extends StatelessWidget {
   const TasksHome({super.key});
 
   @override
-  State<TasksHome> createState() => _TasksHomeState();
-}
-
-class _TasksHomeState extends State<TasksHome> {
-  final List<String> taskCategoryList = [
-    'Business',
-    'Programming',
-    'Design',
-    'Marketing',
-    'Accounting',
-  ];
-  static String? taskCategory;
-
-  @override
   Widget build(BuildContext context) {
+    final tasksViewModel = Provider.of<TasksViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       drawer: const DrawerWidget(),
@@ -52,7 +41,7 @@ class _TasksHomeState extends State<TasksHome> {
                       width: size.width * 2,
                       child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: taskCategoryList.length,
+                        itemCount: tasksViewModel.taskCategoryList.length,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
@@ -62,15 +51,16 @@ class _TasksHomeState extends State<TasksHome> {
                                     horizontal: 8, vertical: 10),
                                 child: TextButton(
                                   onPressed: () {
-                                    setState(() {
-                                      taskCategory = taskCategoryList[index];
-                                    });
+                                    tasksViewModel.setTaskCategory(
+                                      tasksViewModel.taskCategoryList[index],
+                                    );
+
                                     Navigator.canPop(context)
                                         ? Navigator.pop(context)
                                         : null;
                                   },
                                   child: Text(
-                                    taskCategoryList[index],
+                                    tasksViewModel.taskCategoryList[index],
                                     style: const TextStyle(fontSize: 20),
                                   ),
                                 ),
@@ -94,9 +84,7 @@ class _TasksHomeState extends State<TasksHome> {
                       ),
                       TextButton(
                         onPressed: () {
-                          setState(() {
-                            taskCategory = null;
-                          });
+                          tasksViewModel.clearTaskCategory();
                           Navigator.canPop(context)
                               ? Navigator.pop(context)
                               : null;
@@ -116,11 +104,7 @@ class _TasksHomeState extends State<TasksHome> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('tasks')
-            .where('category', isEqualTo: taskCategory)
-            // .orderBy('deadline', descending: true)
-            .snapshots(),
+        stream: tasksViewModel.getTasks(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

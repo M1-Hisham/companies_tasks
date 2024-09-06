@@ -1,4 +1,4 @@
-import 'package:companies_tasks/models/services/auth_services.dart';
+import 'package:companies_tasks/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'forget_password.dart';
 import 'signup.dart';
